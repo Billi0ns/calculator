@@ -1,0 +1,31 @@
+.calculator {
+  display: grid;
+  grid: repeat(6, 50px)/repeat(4, 50px);
+  width: 12rem;
+  margin: auto;
+}
+.calculator > * {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#display {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: flex-end;
+  cursor: default;
+}
+
+#ac {
+  grid-column: 1/3;
+}
+
+.zero {
+  grid-column: 1/3;
+  display: flex;
+}
+
+/*# sourceMappingURL=style.css.map */
