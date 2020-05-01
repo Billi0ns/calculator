@@ -34,7 +34,9 @@ btnNums.map(btn => {
       alert('Reached maximum length!');
       return;
     }
-    
+    if (display1.textContent === 'NaN') {
+      clearAll();
+    }
     if (display1.textContent[0] === '0' && display1.textContent[1] !== '.' ) {
       display1.textContent = e.target.id;
     } else {
