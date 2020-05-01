@@ -1,6 +1,6 @@
 .calculator {
   display: grid;
-  grid: repeat(6, 50px)/repeat(4, 50px);
+  grid: repeat(7, 50px)/repeat(4, 50px);
   width: 12rem;
   margin: auto;
 }
@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-#display {
+#display1, #display2 {
   grid-column: 1/-1;
   display: flex;
   justify-content: flex-end;
