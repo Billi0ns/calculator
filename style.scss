@@ -1,30 +1,88 @@
+body {
+    background: rgb(239, 239, 239);
+    background: rgb(236, 134, 59);
+}
+
+$container-width: 18rem;
+
 .calculator {
     display: grid;
-    grid: repeat(7,50px) / repeat(4, 50px);
-    
-    width: 12rem;
+    grid: repeat(7,1fr) / repeat(4, 1fr);
+    overflow: hidden;
+    width: $container-width;
+    height: 1.75 * $container-width;
+    border-radius: 15px;
+    background: rgb(38,38,38);
     
     & > * {
-        border: 1px solid black;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
     }
     margin: auto;
+    margin-top: 50px;
+
+    &__main {
+        background: rgb(38,38,38);
+        border: 1px rgb(44, 44, 44) solid;
+        margin: 5px;
+        border-radius: 50%;
+        box-shadow: 1px 1px 1px  rgba(0, 0, 0, 0.8);;;
+    }
+
+    &__num {
+        color: white;
+        
+        
+    }
+
+    &:not(&__num) {
+        color: rgb(231, 135, 63);
+    }
 }
 
 #display1, #display2 {
+    padding: 10px;
     grid-column: 1 / -1;
-    display: flex;
     justify-content: flex-end;
     cursor: default;
+    //background: white;
 }
+
+#display1 {
+    color: white;
+    font-size: 2.8rem;
+}
+
+#display2 {
+    color: rgb(154, 154, 154);
+    font-size: 1.5rem;
+}
+
 #ac {
-    grid-column: 1/3;
+    //grid-column: 1/3;
+    color: rgb(154, 154, 154);
 }
-.zero {
+
+#percentage {
+    color: rgb(154, 154, 154);
+}
+
+#sign {
+    color: rgb(154, 154, 154);
+}
+
+#dot {
+    color: white;
+}
+
+#backspace {
+    color: white;
+}
+
+/* .zero {
    grid-column: 1/3;
    display: flex;
-}  
+}   */
 

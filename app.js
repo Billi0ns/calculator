@@ -35,7 +35,7 @@ btnNums.map(btn => {
       return;
     }
     if (display1.textContent === 'NaN') {
-      clearAll();
+      clearAll()
     }
     if (display1.textContent[0] === '0' && display1.textContent[1] !== '.' ) {
       display1.textContent = e.target.id;
@@ -51,7 +51,7 @@ let op2 = '';
 
 btnOperators.map(btn => {
   btn.addEventListener('click', e => {
-    if (op1 === '/' && display1.textContent === '0' || op2 === '/' && display1.textContent === '0') {
+    if (op1 === '/' && Number(display1.textContent) === 0 || op2 === '/' && Number(display1.textContent) === 0) {
       clearAll();
       display1.textContent = 'NaN';
       alert("Error: Can't divide by 0!");
@@ -158,7 +158,7 @@ dot.addEventListener('click', e => {
 
 let equal = document.querySelector('#equal');
 equal.addEventListener('click', e => {
-  if (op1 === '/' && display1.textContent === '0' || op2 === '/' && display1.textContent === '0') {
+  if (op1 === '/' && Number(display1.textContent) === 0 || op2 === '/' && Number(display1.textContent) === 0) {
     clearAll();
     display1.textContent = "NaN";
     alert("Error: Can't divide by 0");
@@ -185,6 +185,24 @@ equal.addEventListener('click', e => {
   display2.textContent = '';
   op1 = '';
   op2 = '';
+})
+
+let sign = document.querySelector('#sign');
+sign.addEventListener('click', e => {
+  if (display1.textContent[0] === '-') {
+    display1.textContent = display1.textContent.slice(1);
+  } else {
+    if (display1.textContent){
+      display1.textContent = '-' + display1.textContent;
+    }
+  }
+})
+
+let percentage = document.querySelector('#percentage');
+percentage.addEventListener('click', e => {
+  if(Number(display1.textContent) != 0) {
+    display1.textContent *= 0.01;
+  }
 })
 
 // Keyboard support
@@ -217,6 +235,9 @@ document.addEventListener('keydown', e => {
       break;
     case 'c':
       document.getElementById('ac').click();
+      break;
+    case '%':
+      document.getElementById('percentage').click();
       break;
   }
 })
