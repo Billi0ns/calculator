@@ -7,8 +7,8 @@ function operate(num1, num2, operator) {
   switch (operator) {
     case '+': return roundNum(add(num1, num2));
     case '-': return roundNum(minus(num1, num2));
-    case '*': return roundNum(multiply(num1, num2));
-    case '/': return roundNum(divide(num1, num2));
+    case '×': return roundNum(multiply(num1, num2));
+    case '÷': return roundNum(divide(num1, num2));
   }
 }
 
@@ -51,7 +51,7 @@ let op2 = '';
 
 btnOperators.map(btn => {
   btn.addEventListener('click', e => {
-    if (op1 === '/' && Number(display1.textContent) === 0 || op2 === '/' && Number(display1.textContent) === 0) {
+    if (op1 === '÷' && Number(display1.textContent) === 0 || op2 === '÷' && Number(display1.textContent) === 0) {
       clearAll();
       display1.textContent = 'NaN';
       alert("Error: Can't divide by 0!");
@@ -97,7 +97,7 @@ btnOperators.map(btn => {
     }
 
     if (!op2) {
-      if (op1 === '*' || op1 === '/' || e.target.id === '+' || e.target.id === '-'){
+      if (op1 === '×' || op1 === '÷' || e.target.id === '+' || e.target.id === '-'){
         num2 = Number(display1.textContent);
         num1 = operate(num1,num2,op1);
         num2 = '';
@@ -158,7 +158,7 @@ dot.addEventListener('click', e => {
 
 let equal = document.querySelector('#equal');
 equal.addEventListener('click', e => {
-  if (op1 === '/' && Number(display1.textContent) === 0 || op2 === '/' && Number(display1.textContent) === 0) {
+  if (op1 === '÷' && Number(display1.textContent) === 0 || op2 === '÷' && Number(display1.textContent) === 0) {
     clearAll();
     display1.textContent = "NaN";
     alert("Error: Can't divide by 0");
@@ -221,10 +221,10 @@ document.addEventListener('keydown', e => {
       document.getElementById('-').click();
       break;
     case '*':
-      document.getElementById('*').click();
+      document.getElementById('×').click();
       break;
     case '/':
-      document.getElementById('/').click();
+      document.getElementById('÷').click();
       break;
     case '=':
     case 'Enter':
