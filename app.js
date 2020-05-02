@@ -13,12 +13,18 @@ function operate(num1, num2, operator) {
 }
 
 function roundNum(num) {
-  if(String(num).includes('.')){
-    return Math.round(num*1000000000)/1000000000;
+  if (String(num).includes('.')){
+    return Math.round(num*100000000)/100000000;
   }
   return num;
 }
-  
+
+function buttonPressed(btn) {
+  btn.classList.add('clicked');
+  // setTimeout(removeClicked.bind(null, btn), 100);
+  setTimeout(() => {btn.classList.remove('clicked')}, 100);
+}
+
 let display1 = document.querySelector('#display1');
 let display2 = document.querySelector('#display2');
 
@@ -29,9 +35,10 @@ let num3 = '';
 
 btnNums.map(btn => {
   btn.addEventListener('click', e => {
-    //console.log(e.target.getAttribute('data-value'));
+    buttonPressed(e.target);
+
     if (display1.textContent.length > 10) {
-      alert('Reached maximum length!');
+      alert('Reached maximum length! Please delete some of the numbers');
       return;
     }
     if (display1.textContent === 'NaN') {
@@ -51,13 +58,17 @@ let op2 = '';
 
 btnOperators.map(btn => {
   btn.addEventListener('click', e => {
-    if (op1 === '÷' && Number(display1.textContent) === 0 || op2 === '÷' && Number(display1.textContent) === 0) {
-      clearAll();
-      display1.textContent = 'NaN';
-      alert("Error: Can't divide by 0!");
-      return;
-    }
+    buttonPressed(e.target);
 
+    if (op1 === '÷'|| op2 === '÷') {
+      if (display1.textContent === '0' || display1.textContent === '0.'){
+        clearAll();
+        display1.textContent = 'NaN';
+        alert("Error: Can't divide by 0!");
+        return;
+      }
+    }
+    
     if (display1.textContent === 'NaN') {
       clearAll();
       return;
@@ -93,6 +104,7 @@ btnOperators.map(btn => {
       op1 = e.target.id;
       display1.textContent = '';
       display2.textContent = num1 + op1;
+      
       return;
     }
 
@@ -104,11 +116,13 @@ btnOperators.map(btn => {
         op1 = e.target.id;
         display1.textContent = '';
         display2.textContent = num1 + op1;
+        
       } else {
         num2 = Number(display1.textContent);
         op2 = e.target.id;
         display1.textContent = '';
         display2.textContent = num1 + op1 + num2 + op2;
+        
       }
     } else {
       if (e.target.id === '+' || e.target.id === '-'){
@@ -119,6 +133,7 @@ btnOperators.map(btn => {
         num2 = ''; 
         op1 = e.target.id;
         display2.textContent = num1 + op1;
+        
         display1.textContent = '';
         op2 = '';
       } else {
@@ -126,6 +141,7 @@ btnOperators.map(btn => {
         num2 = operate(num2,num3,op2);
         op2 = e.target.id;
         display2.textContent = num1 + op1 + num2 + op2;
+        
         display1.textContent = '';
       }
     }
@@ -143,26 +159,35 @@ function clearAll() {
 }
 
 let ac = document.querySelector('#ac');
-ac.addEventListener('click', clearAll)
+ac.addEventListener('click', e => {
+  buttonPressed(e.target);
+  clearAll();
+})
 
 let backspace = document.querySelector('#backspace');
 backspace.addEventListener('click', e => {
+  buttonPressed(e.target);
   display1.textContent = display1.textContent.slice(0,-1);
 })
 
 let dot = document.querySelector('#dot');
 dot.addEventListener('click', e => {
+  buttonPressed(e.target);
   if (display1.textContent === '' || display1.textContent.includes('.')){return;}
   display1.textContent += '.';
 })
 
 let equal = document.querySelector('#equal');
 equal.addEventListener('click', e => {
+  buttonPressed(e.target);
+
   if (op1 === '÷' && Number(display1.textContent) === 0 || op2 === '÷' && Number(display1.textContent) === 0) {
-    clearAll();
-    display1.textContent = "NaN";
-    alert("Error: Can't divide by 0");
-    return;
+    if (display1.textContent !== '') {
+      clearAll();
+      display1.textContent = "NaN";
+      alert("Error: Can't divide by 0");
+      return;
+    }
   }
 
   if (display1.textContent != '') {
@@ -181,7 +206,7 @@ equal.addEventListener('click', e => {
     }
   }
 
-  display1.textContent = num1;
+  display1.textContent = roundNum(num1);
   display2.textContent = '';
   op1 = '';
   op2 = '';
@@ -189,6 +214,7 @@ equal.addEventListener('click', e => {
 
 let sign = document.querySelector('#sign');
 sign.addEventListener('click', e => {
+  buttonPressed(e.target);
   if (display1.textContent[0] === '-') {
     display1.textContent = display1.textContent.slice(1);
   } else {
@@ -200,8 +226,10 @@ sign.addEventListener('click', e => {
 
 let percentage = document.querySelector('#percentage');
 percentage.addEventListener('click', e => {
+  buttonPressed(e.target);
   if(Number(display1.textContent) != 0) {
     display1.textContent *= 0.01;
+    display1.textContent = roundNum(display1.textContent);
   }
 })
 

@@ -1,9 +1,12 @@
 body {
-    background: rgb(239, 239, 239);
-    background: rgb(236, 134, 59);
+    //background: rgb(236, 134, 59);
+    background: #FFB75E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ED8F03, #FFB75E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
-$container-width: 18rem;
+$container-width: 19rem;
 
 .calculator {
     display: grid;
@@ -13,28 +16,33 @@ $container-width: 18rem;
     height: 1.75 * $container-width;
     border-radius: 15px;
     background: rgb(38,38,38);
+    box-shadow: 3px 3px 7px  rgba(0, 0, 0, 0.8), -1px 3px 5px rgba(0, 0, 0, 0.8);
     
-    & > * {
+    margin: auto;
+    margin-top: 10vh;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 100;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    user-select: none;
+
+    &__main {
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-    }
-    margin: auto;
-    margin-top: 50px;
 
-    &__main {
         background: rgb(38,38,38);
         border: 1px rgb(44, 44, 44) solid;
-        margin: 5px;
+        margin: 7px;
         border-radius: 50%;
-        box-shadow: 1px 1px 1px  rgba(0, 0, 0, 0.8);;;
+        box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.6);
     }
 
     &__num {
         color: white;
-        
-        
     }
 
     &:not(&__num) {
@@ -43,46 +51,41 @@ $container-width: 18rem;
 }
 
 #display1, #display2 {
-    padding: 10px;
+    padding: 9px;
     grid-column: 1 / -1;
+    display: flex;
     justify-content: flex-end;
-    cursor: default;
-    //background: white;
+    -webkit-user-select: text; 
+    -moz-user-select: text; 
+    user-select: text;
 }
 
 #display1 {
     color: white;
-    font-size: 2.8rem;
+    font-size: 2.4rem;
 }
 
 #display2 {
     color: rgb(154, 154, 154);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
-#ac {
-    //grid-column: 1/3;
-    color: rgb(154, 154, 154);
+.calculator__operator {
+    font-size: 2rem;
 }
 
-#percentage {
-    color: rgb(154, 154, 154);
-}
-
+#ac,
+#percentage,
 #sign {
     color: rgb(154, 154, 154);
 }
 
-#dot {
-    color: white;
-}
-
+#dot,
 #backspace {
     color: white;
 }
 
-/* .zero {
-   grid-column: 1/3;
-   display: flex;
-}   */
-
+.clicked {
+    background: rgb(33,33,33);
+    transform: translateY(3px);
+}

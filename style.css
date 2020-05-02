@@ -1,31 +1,40 @@
 body {
-  background: #efefef;
-  background: #ec863b;
+  background: #FFB75E;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ED8F03, #FFB75E);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ED8F03, #FFB75E);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .calculator {
   display: grid;
   grid: repeat(7, 1fr)/repeat(4, 1fr);
   overflow: hidden;
-  width: 18rem;
-  height: 31.5rem;
+  width: 19rem;
+  height: 33.25rem;
   border-radius: 15px;
   background: #262626;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.8), -1px 3px 5px rgba(0, 0, 0, 0.8);
   margin: auto;
-  margin-top: 50px;
+  margin-top: 10vh;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 100;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
-.calculator > * {
+.calculator__main {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-.calculator__main {
   background: #262626;
   border: 1px #2c2c2c solid;
-  margin: 5px;
+  margin: 7px;
   border-radius: 50%;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
 }
 .calculator__num {
   color: white;
@@ -35,45 +44,43 @@ body {
 }
 
 #display1, #display2 {
-  padding: 10px;
+  padding: 9px;
   grid-column: 1/-1;
+  display: flex;
   justify-content: flex-end;
-  cursor: default;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
 }
 
 #display1 {
   color: white;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
 }
 
 #display2 {
   color: #9a9a9a;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
-#ac {
-  color: #9a9a9a;
+.calculator__operator {
+  font-size: 2rem;
 }
 
-#percentage {
-  color: #9a9a9a;
-}
-
+#ac,
+#percentage,
 #sign {
   color: #9a9a9a;
 }
 
-#dot {
-  color: white;
-}
-
+#dot,
 #backspace {
   color: white;
 }
 
-/* .zero {
-   grid-column: 1/3;
-   display: flex;
-}   */
+.clicked {
+  background: #212121;
+  transform: translateY(3px);
+}
 
 /*# sourceMappingURL=style.css.map */
