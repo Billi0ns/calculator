@@ -50,10 +50,6 @@ btnNums.map(btn => {
   btn.addEventListener('click', e => {
     buttonPressed(e.target);
 
-    /* if (display1.textContent.length > 10) {
-      alert('Reached maximum length! Please delete some of the numbers');
-      return;
-    } */
     if (display1.textContent === 'NaN') {
       clearAll()
     }
@@ -183,7 +179,7 @@ ac.addEventListener('click', e => {
 
 let backspace = document.querySelector('#backspace');
 backspace.addEventListener('click', e => {
-  //buttonPressed(e.target);
+  buttonPressed(e.target);
   display1.textContent = display1.textContent.slice(0,-1);
   adjustFont(display1);
 })
