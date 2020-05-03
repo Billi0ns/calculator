@@ -13,7 +13,7 @@ function operate(num1, num2, operator) {
 }
 
 function roundNum(num) {
-  if (String(num).includes('.')){
+  if (String(num).includes('.') && String(num).replace(/\d*./, '').length > 9){
     return Math.round(num*100000000)/100000000;
   }
   return num;
@@ -23,6 +23,19 @@ function buttonPressed(btn) {
   btn.classList.add('clicked');
   // setTimeout(removeClicked.bind(null, btn), 100);
   setTimeout(() => {btn.classList.remove('clicked')}, 100);
+}
+
+function adjustFont(display) {
+  let originalSize1 = 38.4;
+  let originalSize2 = 22.4;
+  let displayWidth = 460.8; // 2.4rem = 38.4px, max 12 character in display1
+  let size = displayWidth / display.textContent.length;
+
+  if (display === display1) {
+    display.style.fontSize = display.textContent.length > 12 ? size + 'px': originalSize1 + 'px';
+  } else {
+    display.style.fontSize = display.textContent.length > 26 ? size + 'px': originalSize2 + 'px';
+  }
 }
 
 let display1 = document.querySelector('#display1');
@@ -37,10 +50,10 @@ btnNums.map(btn => {
   btn.addEventListener('click', e => {
     buttonPressed(e.target);
 
-    if (display1.textContent.length > 10) {
+    /* if (display1.textContent.length > 10) {
       alert('Reached maximum length! Please delete some of the numbers');
       return;
-    }
+    } */
     if (display1.textContent === 'NaN') {
       clearAll()
     }
@@ -49,6 +62,7 @@ btnNums.map(btn => {
     } else {
       display1.textContent += e.target.id;
     }
+    adjustFont(display1);
   } )
 })
 
@@ -93,6 +107,7 @@ btnOperators.map(btn => {
           display2.textContent = num1 + op1;
         }
       }
+      adjustFont(display2);
       return;
     }
 
@@ -104,7 +119,8 @@ btnOperators.map(btn => {
       op1 = e.target.id;
       display1.textContent = '';
       display2.textContent = num1 + op1;
-      
+      adjustFont(display2);
+
       return;
     }
 
@@ -145,6 +161,7 @@ btnOperators.map(btn => {
         display1.textContent = '';
       }
     }
+    adjustFont(display2);
   })
 })
 
@@ -166,8 +183,9 @@ ac.addEventListener('click', e => {
 
 let backspace = document.querySelector('#backspace');
 backspace.addEventListener('click', e => {
-  buttonPressed(e.target);
+  //buttonPressed(e.target);
   display1.textContent = display1.textContent.slice(0,-1);
+  adjustFont(display1);
 })
 
 let dot = document.querySelector('#dot');
@@ -175,6 +193,7 @@ dot.addEventListener('click', e => {
   buttonPressed(e.target);
   if (display1.textContent === '' || display1.textContent.includes('.')){return;}
   display1.textContent += '.';
+  adjustFont(display1);
 })
 
 let equal = document.querySelector('#equal');
@@ -207,6 +226,7 @@ equal.addEventListener('click', e => {
   }
 
   display1.textContent = roundNum(num1);
+  adjustFont(display1);
   display2.textContent = '';
   op1 = '';
   op2 = '';
@@ -222,6 +242,7 @@ sign.addEventListener('click', e => {
       display1.textContent = '-' + display1.textContent;
     }
   }
+  adjustFont(display1);
 })
 
 let percentage = document.querySelector('#percentage');
@@ -231,6 +252,7 @@ percentage.addEventListener('click', e => {
     display1.textContent *= 0.01;
     display1.textContent = roundNum(display1.textContent);
   }
+  adjustFont(display1);
 })
 
 // Keyboard support
