@@ -1,7 +1,7 @@
 # Calculator
 > Calculator project for The Odin Project
 
-![Demo.gif](./calculator_demo.gif)
+![Calculator_screenshot_](./calculator_screenshot.png)
 
 Visit the project here: [github.io](https://billi0ns.github.io/calculator/)
 
