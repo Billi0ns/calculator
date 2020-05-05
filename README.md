@@ -1,5 +1,7 @@
 # Calculator
-Calculator project for the Odin Project
+> Calculator project for The Odin Project
+
+![Demo.gif](./calculator_demo.gif)
 
 Visit the project here: [github.io](https://billi0ns.github.io/calculator/)
 
