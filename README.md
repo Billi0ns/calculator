@@ -1,7 +1,7 @@
 # Calculator
 > Calculator project for The Odin Project
 
-<video autoplay loop muted playsinline src="calculator_demo.mp4"></video>
+<img src="calculator_demo.gif" alt="calculator_demo" width="350"/>
 
 Visit the project here: [github.io](https://billi0ns.github.io/calculator/)
 
